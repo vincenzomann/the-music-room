@@ -1,0 +1,10 @@
+flask module dependencies:
+
+flask_mail
+flask_session
+
+werkzeug.security
+sqlite3
+datetime
+smtplib
+itsdangerous

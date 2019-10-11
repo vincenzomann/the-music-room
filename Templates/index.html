@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+{% block content %}
+	{% if error %}
+		<span style="background-color: crimson">{{ error }}</span>
+	{% endif %}
+	<h2>Register</h2>
+	<form method="POST" action="/register" name="register">
+		<div class ="form-group">
+			<input type="text" class="form-control" name="firstname" placeholder="First Name" maxlength="30">
+		</div>
+		<div class ="form-group">
+			<input type="text" class="form-control" name="surname" placeholder="Surname" maxlength="30">
+		</div>
+		<div class ="form-group">
+			<input type="text" class="form-control" name="username" placeholder="Username (Required)" maxlength="30">
+		</div>
+		<span>Passwords must have a minimum length of 10 characters. <br/>Tip: Make your password a nonsense phrase.</span>
+		<div class ="form-group">
+			<input type="password" class="form-control" name="password1" placeholder="Password (Required)">
+		</div>
+		<div class ="form-group">
+			<input type="password" class="form-control" name="password2" placeholder="Verify Password (Required)">
+		</div>
+		<div class ="form-group">
+			<input type="text" class="form-control" name="email" placeholder="Email">
+		</div>
+		<div class ="form-group">
+			<input type="submit" value="Submit" name="regForm">
+		</div>
+	</form>
+	<h2>Log In</h2>
+	<form method="POST" action="/login" name="login">
+		<div class ="form-group">
+			<input type="text" class="form-control"name="logEmail" placeholder="Email">
+		</div>
+		<div class ="form-group">
+			<input type="password" class="form-control"name="logPassword" placeholder="Password">
+		</div>
+		<div class ="form-group">
+			<input type="submit" value="Submit" name="logForm">
+		</div>
+	</form>
+	<h2>Forgot Password?</h2>
+	<form method="POST" action="/forgotPassword" name="forgotPassword">
+		<div class ="form-group">
+			<input type="text" class="form-control"name="resetPasswordEmail" placeholder="Email">
+		</div>
+		<div class ="form-group">
+			<input type="submit" value="Submit" name="forgotPasswordForm">
+		</div>
+		<p>A link will be sent to this email to reset your password</p>
+	</form>
+{% endblock %}

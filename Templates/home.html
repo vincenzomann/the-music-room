@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block content %}
+	<h1>News Feed</h1>
+	<form method="POST" action="/writePost" name="writePost">
+		<div class ="form-group">
+			<input id="csrfToken" name="csrfToken" type="hidden" value = {{token}} >
+		</div>
+
+		<div class="status-upload">
+			<textarea style="margin-bottom: 10px;" type="text" class="form-control" name="content" placeholder="Whats on your mind?" maxlength="280"></textarea>
+		</div>
+		<div class ="form-group">
+			<input type="submit" class="form-control" value="Submit" name="postButton">
+		</div>
+	</form>
+	{{message}}
+	{% for posts in postings %}
+		<h4>{{posts.get_username() |safe}}</h4>
+    	<span>{{ posts.get_content() |safe}}</span>
+    	<p>{{ posts.get_timestamp() }}</p>
+  	{% endfor %}
+{% endblock %}

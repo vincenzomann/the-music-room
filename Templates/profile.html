@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+{% block content %}
+	<h1>{{user.get('userName') |safe}}</h1>
+		<p>Current Email: {{user.get('email') |safe}} </p>
+		<h2>Change Email</h2>
+		<p>A confirmation email will be sent to this address before any changes are made (EMAIL WILL NOT BE CHANGED UNTIL IT IS CONFIRMED)</p>
+		<form method="POST" action="/changeEmailRequest"  name="changeEmailRequest">
+			<div class ="form-group">
+				<input id="csrfToken" class="form-control" name="csrfToken" type="hidden" value = {{token}}>
+			</div>	
+			<div class ="form-group">
+				<input type="text" class="form-control" name="email" placeholder="Email">
+			</div>
+			<div class ="form-group">
+				<input type="submit" class="form-control" value="Submit" name="emailForm">
+			</div>
+		</form>
+		<h2>Change Password</h2> 
+		<span style="background-color: crimson">{{message}}</span>
+		<form method="POST" action="/changePassword" name="changePassword">
+			<div class ="form-group">
+				<input id="csrfToken" class="form-control" name="csrfToken" type="hidden" value = {{token}}>
+			</div>	
+			<div class ="form-group">
+				<input type="password" class="form-control" name="password" placeholder="Current Password">
+			</div>	
+			<span>Passwords must have a minimum length of 10 characters. <br/>Tip: Make your password a nonsense phrase.</span>
+			<div class ="form-group">
+				<input type="password" class="form-control" name="newPassword1" placeholder="New Password">
+			</div>	
+			<div class ="form-group">
+				<input type="password" class="form-control" name="newPassword2" placeholder="New Password">
+			</div>	
+			<div class ="form-group">
+				<input type="submit" class="form-control" value="Submit" name="emailForm">
+			</div>	
+		</form>
+		{% if user.get('isAdmin') == 1 %}
+    		<form method="POST" action="/banUser" name="banUser">
+    			<div class ="form-group">
+					<input type="text" class="form-control" name="user" placeholder="Username to ban">
+					<input type="submit" class="form-control" value="Ban" name="banButton">
+				</div>
+    		</form>
+    		<form method="POST" action="/unbanUser" name="unbanUser">
+    			<div class ="form-group">
+					<input type="text" class="form-control" name="user" placeholder="Username to un-ban">
+					<input type="submit" class="form-control" value="Un-Ban" name="Unban-Button">
+				</div>
+    		</form>
+    	{% endif %}
+
+
+{% endblock %}
